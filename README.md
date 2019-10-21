@@ -124,3 +124,33 @@ Returns: an array of objects with park id, park name, and amenities (optional bo
 ]
 ```
 ---
+### [GET] Park by id
+
+#### URL: https://park-passport.herokuapp.com/api/parks/:id
+
+Returns: an object with park id, park name, and list of amenities set to true or false.
+
+```
+{
+  "id": 1,
+  "name": "Warrior's Path",
+  "description": "Our marina is the best!",
+  "pool": false,
+  "hiking": false,
+  "fishing": false,
+  "wildlife": false,
+  "camping": false,
+  "disc_golf": false,
+  "dog_park": false,
+  "picnic_area": false,
+  "playground": false,
+  "soccer_field": false,
+  "paddle_boats": false,
+  "tennis_courts": false,
+  "walking_paths": false,
+  "bird_watching": false,
+  "volleyball_court": false,
+  "basketball_court": false
+}
+```
+---
