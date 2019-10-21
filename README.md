@@ -45,3 +45,82 @@ Returns: an object with a welcome message and token (make sure to store via loca
 ```
 ---
 ___
+
+#### AUTH ENDPOINTS
+#### All EndPoints below require a token!
+
+### [GET] Parks
+
+#### URL: https://design-bw.herokuapp.com/api/users
+
+Returns: an array of objects with user id, username, and email. Null means no email for that user, password is hashed.
+
+```
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "password": "hashed password",
+        "email": "admin@gmail.com"
+    },
+    {
+        "id": 2,
+        "username": "admin2",
+        "password": "hashed password",
+        "email": null
+    }
+]
+```
+---
+### [GET] Parks
+
+#### URL: https://park-passport.herokuapp.com/api/parks
+
+Returns: an array of objects with park id, park name, and amenities (optional boolean set to true or false, latter being default). 
+
+```[
+  {
+    "id": 1,
+    "name": "Warrior's Path",
+    "description": "Our marina is the best!",
+    "pool": false,
+    "hiking": false,
+    "fishing": false,
+    "wildlife": false,
+    "camping": false,
+    "disc_golf": false,
+    "dog_park": false,
+    "picnic_area": false,
+    "playground": false,
+    "soccer_field": false,
+    "paddle_boats": false,
+    "tennis_courts": false,
+    "walking_paths": false,
+    "bird_watching": false,
+    "volleyball_court": false,
+    "basketball_court": false
+  },
+  {
+    "id": 2,
+    "name": "Bay's Mountain",
+    "description": "Come see our big, beautiful wolves!",
+    "pool": false,
+    "hiking": false,
+    "fishing": false,
+    "wildlife": false,
+    "camping": false,
+    "disc_golf": false,
+    "dog_park": false,
+    "picnic_area": false,
+    "playground": false,
+    "soccer_field": false,
+    "paddle_boats": false,
+    "tennis_courts": false,
+    "walking_paths": false,
+    "bird_watching": false,
+    "volleyball_court": false,
+    "basketball_court": false
+  }
+]
+```
+---
