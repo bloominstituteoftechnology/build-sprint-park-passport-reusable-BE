@@ -1,6 +1,6 @@
 # Park Passport (Backend)
 
-Please note the links and schema below as you'll need that info to render data within the Park Passport app.
+Please note the links and schema below as you'll need that info to render and manipulate data within the Park Passport app.
 
 ### [POST] Registration
 
@@ -180,9 +180,24 @@ Payload: an object with the following...
 }
 ```
 
-Returns a number signifying how many records were changed:
+Returns a number confirming the record was edited (1 means true):
 
 ```
     1
+```
+---
+### [DELETE] Park By ID
+
+#### URL: https://park-passport.herokuapp.com/api/parks/:id
+> The ID from params will select the object within the parks array (use a GET for all parks if you need to reference before selecting).
+
+```
+
+Returns an object that confirms the record was deleted (1 means true):
+
+```
+{
+  "removed": 1
+}
 ```
 ---
