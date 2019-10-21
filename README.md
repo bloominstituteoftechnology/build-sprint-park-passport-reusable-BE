@@ -169,3 +169,20 @@ Returns object containing name, description, and amenities:
 }
 ```
 ---
+### [PUT] Park By ID
+
+#### URL: https://park-passport.herokuapp.com/api/parks/:id
+Payload: an object with the following...
+```
+{
+	"name": "Grand Canyon",
+	"description": "Please don't fall (unless you signed our waiver)..."
+}
+```
+
+Returns a number signifying how many records were changed:
+
+```
+    1
+```
+---
