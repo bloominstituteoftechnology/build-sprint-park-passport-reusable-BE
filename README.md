@@ -191,11 +191,8 @@ Returns a number confirming the record was edited (1 means true):
 #### URL: https://park-passport.herokuapp.com/api/parks/:id
 > The ID from params will select the object within the parks array (use a GET for all parks if you need to reference before selecting).
 
-```
-
 Returns an object that confirms the record was deleted (1 means true):
 
-```
 {
   "removed": 1
 }
