@@ -1,6 +1,6 @@
 # Park Passport (Backend)
 
-Will add links and schema for all relevant API endpoints here when they are complete.
+Please note the links and schema below as you'll need that info to render data within the Park Passport app.
 
 ### [POST] Registration
 
@@ -48,29 +48,6 @@ ___
 
 #### AUTH ENDPOINTS
 #### All EndPoints below require a token!
-
-### [GET] Parks
-
-#### URL: https://design-bw.herokuapp.com/api/users
-
-Returns: an array of objects with user id, username, and email. Null means no email for that user, password is hashed.
-
-```
-[
-    {
-        "id": 1,
-        "username": "admin",
-        "password": "hashed password",
-        "email": "admin@gmail.com"
-    },
-    {
-        "id": 2,
-        "username": "admin2",
-        "password": "hashed password",
-        "email": null
-    }
-]
-```
 ---
 ### [GET] Parks
 
