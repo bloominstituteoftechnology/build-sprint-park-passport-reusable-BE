@@ -193,8 +193,8 @@ Returns a number confirming the record was edited (1 means true):
 
 Returns an object that confirms the record was deleted (1 means true):
 
+```
 {
   "removed": 1
 }
-```
 ---
