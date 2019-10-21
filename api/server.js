@@ -4,6 +4,7 @@ const cors = require('cors');
 
 // Routers go here
 const authRouter = require('../auth/auth-router');
+const parksRouter = require('../parks/parks-router');
 
 const server = express();
 
@@ -13,6 +14,7 @@ server.use(cors());
 
 // Routes go here
 server.use('/api/auth', authRouter);
+server.use('/api/parks', parksRouter);
 
 server.get('/', (req, res) => {
     res.send("It's aliveeeee!")
