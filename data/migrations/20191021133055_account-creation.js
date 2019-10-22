@@ -39,7 +39,7 @@ exports.up = function(knex) {
       tbl
         .integer('park_id')
         .unsigned()
-        .notNullable()
+        // .notNullable()
         .references('id')
         .inTable('parks')
         .onUpdate('CASCADE')

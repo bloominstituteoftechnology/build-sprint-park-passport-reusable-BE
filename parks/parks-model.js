@@ -48,10 +48,11 @@ function remove(id) {
         .delete();
 };
 
-function getRatings(park_id) {
+function getRatings(parkId) {
     return db('park_ratings')
-        .where({ park_id })
-        .first();
+        .join('parks', 'parks.id', 'park_ratings.park_id')
+        .select('parks.park_name', 'park_ratings.id', 'park_ratings.rating')
+        .where({ park_id: parkId })
 }
 
 function addRating(rating, park_id) {
