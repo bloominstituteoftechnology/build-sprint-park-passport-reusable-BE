@@ -55,9 +55,9 @@ function getRatings(parkId) {
         .where({ park_id: parkId })
 }
 
-function addRating(rating, park_id) {
-    return db('park_ratings')
-        .insert(rating, park_id);   
+function addRating(rating) {
+    return db('park_ratings') 
+        .insert(rating, 'id')
 }
 
 function getComments(parkId) {
