@@ -59,4 +59,34 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 });
 
+router.get('/:id/ratings', (req, res) => {
+    Parks.getRatings(req.params.id)
+        .then(park => {
+            if (park) res.status(200).json(park)
+            else res.status(404).json({ message: 'No such park' })
+        })
+        .catch(err => res.status(500).json({ message: err }))
+});
+
+router.post('/:id/ratings', (req, res) => {
+    Parks.addRating(req.body)
+        .then(park => res.status(201).json(park))
+        .catch(err => res.status(500).json({ message: err }))
+})
+
+router.get('/:id/comments', (req, res) => {
+    Parks.getComments(req.params.id)
+        .then(park => {
+            if (park) res.status(200).json(park)
+            else res.status(404).json({ message: 'No such park' })
+        })
+        .catch(err => res.status(500).json({ message: err }))
+});
+
+router.post('/:id/comments', (req, res) => {
+    Parks.addComment(req.body)
+        .then(park => res.status(201).json(park))
+        .catch(err => res.status(500).json({ message: err }))
+})
+
 module.exports = router;

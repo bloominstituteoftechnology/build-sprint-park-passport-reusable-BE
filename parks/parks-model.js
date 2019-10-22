@@ -6,7 +6,11 @@ module.exports = {
     addPark,
     addAmenity,
     update,
-    remove
+    remove,
+    getRatings,
+    addRating,
+    getComments,
+    addComment
 }
 
 function find() {
@@ -29,7 +33,7 @@ function addPark(park) {
 
 function addAmenity(amenity, park_id) {
     return db('parks')
-    .insert(amenity, park_id);
+        .insert(amenity, park_id);
 };
 
 function update(changes, id) {
@@ -43,3 +47,25 @@ function remove(id) {
         .where('id', Number(id))
         .delete();
 };
+
+function getRatings(park_id) {
+    return db('park_ratings')
+        .where({ park_id })
+        .first();
+}
+
+function addRating(rating, park_id) {
+    return db('park_ratings')
+        .insert(rating, park_id);   
+}
+
+function getComments(park_id) {
+    return db('park_ratings')
+        .where({ park_id })
+        .first();
+}
+
+function addComment(comment, park_id) {
+    return db('park_ratings')
+        .insert(comment, park_id);
+}
