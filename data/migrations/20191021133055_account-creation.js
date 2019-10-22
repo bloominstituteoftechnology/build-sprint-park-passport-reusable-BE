@@ -31,11 +31,79 @@ exports.up = function(knex) {
         tbl.boolean('bird_watching').defaultTo(0);
         tbl.boolean('volleyball_court').defaultTo(0);
         tbl.boolean('basketball_court').defaultTo(0);
-    });
+    })
+
+    .createTable('park_ratings', tbl => {
+      tbl.increments(); // unique id
+
+      tbl
+        .integer('park_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('parks')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+      
+      tbl 
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+
+      tbl.integer('rating').notNullable();
+
+      tbl.text('comment');
+    })
+
+    .createTable('user_comments', tbl => {
+      tbl.increments(); // unique id
+      
+      tbl 
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+
+        tbl
+        .integer('park_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('parks')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+
+      tbl
+        .integer('park_rating')
+        .unsigned()
+        .notNullable()
+        .references('rating')
+        .inTable('park_ratings')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+
+      tbl
+        .text('park_comment')
+        .unsigned()
+        .notNullable()
+        .references('comment')
+        .inTable('park_ratings')
+        .onUpdate('CASCADE')
+        .onDelete('RESTRICT');
+    })
   };
   
   exports.down = function(knex, Promise) {
     return knex.schema
+        .dropTableIfExists('user_comments')
+        .dropTableIfExists('park_ratings')
         .dropTableIfExists('parks')
         .dropTableIfExists('users')
   };
