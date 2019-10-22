@@ -51,7 +51,7 @@ function remove(id) {
 function getRatings(parkId) {
     return db('park_ratings')
         .join('parks', 'parks.id', 'park_ratings.park_id')
-        .select('parks.park_name', 'park_ratings.id', 'park_ratings.rating')
+        .select('parks.name', 'park_ratings.id', 'park_ratings.rating')
         .where({ park_id: parkId })
 }
 
@@ -60,10 +60,11 @@ function addRating(rating, park_id) {
         .insert(rating, park_id);   
 }
 
-function getComments(park_id) {
+function getComments(parkId) {
     return db('park_ratings')
-        .where({ park_id })
-        .first();
+        .join('parks', 'parks.id', 'park_ratings.park_id')
+        .select('parks.name', 'park_ratings.id', 'park_ratings.comment')
+        .where({ park_id: parkId });
 }
 
 function addComment(comment, park_id) {

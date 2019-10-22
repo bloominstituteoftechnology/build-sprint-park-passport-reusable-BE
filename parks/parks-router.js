@@ -62,7 +62,7 @@ router.delete('/:id', (req, res) => {
 router.get('/:id/ratings', (req, res) => {
     Parks.getRatings(req.params.id)
         .then(ratings => {
-            if (ratings.length) res.status(200).json(ratings)
+            if (ratings) res.status(200).json(ratings)
             else res.status(404).json({ message: 'Could not find ratings for that park' })
         })
         .catch(err => res.status(500).json({ message: err }))
@@ -72,7 +72,7 @@ router.post('/:id/ratings', (req, res) => {
     Parks.findById(req.params.id)
         .then(park => {
             if (park) {
-                Parks.addRating(req.body, id)
+                Parks.addRating(req.body, req.params.id)
                 .then(rating => {
                     res.status(201).json(rating)
                 })

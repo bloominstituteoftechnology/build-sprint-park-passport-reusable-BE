@@ -39,11 +39,11 @@ exports.up = function(knex) {
       tbl
         .integer('park_id')
         .unsigned()
-        // .notNullable()
+        .notNullable()
         .references('id')
         .inTable('parks')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
       
       tbl 
         .integer('user_id')
@@ -52,7 +52,7 @@ exports.up = function(knex) {
         .references('id')
         .inTable('users')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
 
       tbl.integer('rating').notNullable();
 
@@ -69,7 +69,7 @@ exports.up = function(knex) {
         .references('id')
         .inTable('users')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
 
         tbl
         .integer('park_id')
@@ -78,7 +78,7 @@ exports.up = function(knex) {
         .references('id')
         .inTable('parks')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
 
       tbl
         .integer('park_rating')
@@ -87,7 +87,7 @@ exports.up = function(knex) {
         .references('rating')
         .inTable('park_ratings')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
 
       tbl
         .text('park_comment')
@@ -96,7 +96,7 @@ exports.up = function(knex) {
         .references('comment')
         .inTable('park_ratings')
         .onUpdate('CASCADE')
-        .onDelete('RESTRICT');
+        .onDelete('CASCADE');
     })
   };
   
