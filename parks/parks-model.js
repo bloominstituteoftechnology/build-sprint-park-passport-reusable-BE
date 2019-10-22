@@ -8,9 +8,7 @@ module.exports = {
     update,
     remove,
     getRatings,
-    addRating,
-    getComments,
-    addComment
+    addRating
 }
 
 function find() {
@@ -51,23 +49,11 @@ function remove(id) {
 function getRatings(parkId) {
     return db('park_ratings')
         .join('parks', 'parks.id', 'park_ratings.park_id')
-        .select('parks.name', 'park_ratings.id', 'park_ratings.rating')
+        .select('parks.name', 'park_ratings.id', 'park_ratings.rating', 'park_ratings.comment')
         .where({ park_id: parkId })
 }
 
 function addRating(rating) {
     return db('park_ratings') 
         .insert(rating, 'id')
-}
-
-function getComments(parkId) {
-    return db('park_ratings')
-        .join('parks', 'parks.id', 'park_ratings.park_id')
-        .select('parks.name', 'park_ratings.id', 'park_ratings.comment')
-        .where({ park_id: parkId });
-}
-
-function addComment(comment, park_id) {
-    return db('park_ratings')
-        .insert(comment, park_id);
 }
