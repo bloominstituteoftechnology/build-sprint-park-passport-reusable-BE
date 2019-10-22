@@ -2,15 +2,17 @@ const express = require('express');
 
 const Parks = require('./parks-model');
 
+const authenticate = require('../auth/authenticate-middleware');
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', authenticate, (req, res) => {
     Parks.find()
         .then(parks => res.status(200).json(parks))
         .catch(err => res.status(500).json({ message: err }))
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     Parks.findById(req.params.id) 
         .then(park => {
             if (park) res.status(200).json(park)
