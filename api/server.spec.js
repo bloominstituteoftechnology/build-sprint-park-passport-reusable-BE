@@ -13,9 +13,9 @@ describe('GET /', () => {
         expect(response.type).toMatch(/json/i);
     });
 
-    it('Should return { api: "Running" }', () => {
+    it('Should return Frankenstein quote', () => {
         return request(server).get('/').then(res => {
-            expect(res.body).toEqual("It's aliveeeee!");
+            expect(res.body).toEqual({ message: "It's aliveeeee!" });
         });
     });
 })

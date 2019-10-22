@@ -17,7 +17,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/parks', parksRouter);
 
 server.get('/', (req, res) => {
-    res.send("It's aliveeeee!")
+    res.status(200).json({ message: "It's aliveeeee!" })
 })
 
 module.exports = server;
