@@ -75,7 +75,7 @@ router.post('/:id/ratings', authenticate, (req, res) => {
     Parks.findById(id)
         .then(park => {
             if (park) {
-                Parks.addRating(req.body)
+                Parks.addRating(req.body, req.params.id)
                 .then(rating => {
                     res.status(201).json(rating)
                 })
