@@ -81,15 +81,6 @@ exports.up = function(knex) {
         .onDelete('CASCADE');
 
       tbl
-        .integer('park_rating')
-        .unsigned()
-        .notNullable()
-        .references('rating')
-        .inTable('park_ratings')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-
-      tbl
         .text('park_comment')
         .unsigned()
         .notNullable()
@@ -102,8 +93,8 @@ exports.up = function(knex) {
   
   exports.down = function(knex, Promise) {
     return knex.schema
-        .dropTableIfExists('user_comments')
-        .dropTableIfExists('park_ratings')
+        // .dropTableIfExists('user_comments')
+        .dropTable('park_ratings')
         .dropTableIfExists('parks')
         .dropTableIfExists('users')
   };
