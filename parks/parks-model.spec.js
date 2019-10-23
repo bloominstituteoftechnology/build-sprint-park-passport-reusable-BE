@@ -35,4 +35,23 @@ describe('Parks Model', () => {
             expect(parks).toHaveLength(1);
         })
     })
+
+    describe('Add new park', () => {
+        it('Should be empty', async () => {
+            const ratings = await db('park_ratings');
+            expect(ratings).toHaveLength(0);
+        })
+
+        it('Should add a new rating', async () => {
+            await Parks.addRating({ user_id: 1, park_id: 1, rating: 5, comment: 'Deer everywhere!' });
+            const ratings = await db('park_ratings');
+            expect(ratings).toHaveLength(1);
+        })
+
+        it('Should only add a new rating when user and park ID are specified', async () => {
+            await Parks.addRating({ rating: 1, comment: 'Had to run from a bear!' });
+            const ratings = await db('park_ratings');
+            expect(ratings).toHaveLength(1);
+        })
+    })
 })
