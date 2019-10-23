@@ -200,6 +200,7 @@ Returns an object that confirms the record was deleted (1 means true):
 {
   "removed": 1
 }
+```
 
 ---
 
