@@ -8,6 +8,7 @@ exports.up = function(knex) {
         .string('username', 128)
         .notNullable()
         .unique();
+
       users.string('password', 128).notNullable();
     })
 
@@ -36,8 +37,6 @@ exports.up = function(knex) {
   
   exports.down = function(knex, Promise) {
     return knex.schema
-        // .dropTableIfExists('user_comments')
-        .dropTable('park_ratings')
         .dropTableIfExists('parks')
         .dropTableIfExists('users')
   };
