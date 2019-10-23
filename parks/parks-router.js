@@ -68,7 +68,7 @@ router.get('/:id/ratings', (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 });
 
-router.post('/:id/ratings', authenticate, (req, res) => {
+router.post('/ratings', authenticate, (req, res) => {
     const id = req.body.id;
     Parks.findById(id)
         .then(park => {
