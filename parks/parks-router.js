@@ -69,13 +69,13 @@ router.get('/:id/ratings', (req, res) => {
 });
 
 router.post('/:id/ratings', authenticate, (req, res) => {
-    const id = req.body.id;
-    const userId = req.user.id;
+    // const id = req.body.id;
+    // const userId = req.user.id;
     
     Parks.findById(id)
         .then(park => {
             if (park) {
-                Parks.addRating(req.body, id, userId)
+                Parks.addRating(req.body)
                 .then(rating => {
                     res.status(201).json(rating)
                 })
