@@ -16,6 +16,7 @@ exports.up = function(knex) {
         tbl.increments(); // unique id
         tbl.string('name', 255).notNullable();
         tbl.text('description').notNullable();
+        tbl.string('location', 100).notNullable();
         tbl.boolean('pool').defaultTo(0);
         tbl.boolean('hiking').defaultTo(0);
         tbl.boolean('fishing').defaultTo(0);
