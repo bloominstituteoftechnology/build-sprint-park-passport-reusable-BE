@@ -139,17 +139,19 @@ Payload: an object with the following (if we get to stretch, later we'll figure 
 ```
   {
 	"name": "Grand Canyon",
-	"description": "Please don't fall..."
+	"description": "Please don't fall...",
+	"location": "AZ"
   }
 ```
 
-Returns object containing name, description, and amenities: 
+Returns object containing name, description, location, and amenities: 
 
 ```
 {
   "id": 4,
   "name": "Grand Canyon",
   "description": "Please don't fall...",
+  "location": "AZ",
   "pool": false,
   "hiking": false,
   "fishing": false,
@@ -176,7 +178,8 @@ Payload: an object with the following...
 ```
 {
 	"name": "Grand Canyon",
-	"description": "Please don't fall (unless you signed our waiver)..."
+	"description": "Please don't fall (unless you signed our waiver)...",
+	"location": "AZ"
 }
 ```
 
@@ -197,3 +200,43 @@ Returns an object that confirms the record was deleted (1 means true):
 {
   "removed": 1
 }
+
+---
+
+### [GET] Park Ratings and Comments by Id
+
+#### URL: https://park-passport.herokuapp.com/api/parks/:id/ratings
+
+Returns: an object with park name, rating id, username, rating, and comment.
+
+```
+{
+    "name": "Yellow Stone",
+    "id": 3,
+    "username": "NatureBoy",
+    "rating": 5,
+    "comment": "I met a bison that let me pet him! But then a park ranger threw me out of the park. Hopefully I can sneak back in tomorrow to see the geysers."
+}
+```
+
+### [POST] Park Rating and Comment
+
+#### URL: https://park-passport.herokuapp.com/api/parks/:id/ratings
+
+Payload: an object with the following (note: user_id and park_id reference the same ID reflected on the users/parks databases).
+```
+  {
+	"user_id": 2,
+	"park_id": 2,
+	"rating": 1,
+        "comment": "Why did I come here? I hate the cold. Oh, yeah. Because my wife made me. Some anniversary..."
+  }
+```
+
+Returns rating ID (indicates post was successful):
+
+```
+[
+ 4
+]
+```
