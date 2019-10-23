@@ -32,63 +32,6 @@ exports.up = function(knex) {
         tbl.boolean('volleyball_court').defaultTo(0);
         tbl.boolean('basketball_court').defaultTo(0);
     })
-
-    .createTable('park_ratings', tbl => {
-      tbl.increments(); // unique id
-
-      tbl
-        .integer('park_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('parks')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-      
-      tbl 
-        .integer('user_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-
-      tbl.integer('rating').notNullable();
-
-      tbl.text('comment');
-    })
-
-    .createTable('user_comments', tbl => {
-      tbl.increments(); // unique id
-      
-      tbl 
-        .integer('user_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-
-        tbl
-        .integer('park_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('parks')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-
-      tbl
-        .text('park_comment')
-        .unsigned()
-        .notNullable()
-        .references('comment')
-        .inTable('park_ratings')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-    })
   };
   
   exports.down = function(knex, Promise) {
