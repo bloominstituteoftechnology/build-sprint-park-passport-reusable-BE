@@ -52,9 +52,10 @@ function getRatings(parkId) {
         .join('users', 'users.id', 'park_ratings.user_id')
         .select('parks.name', 'park_ratings.id', 'users.username', 'park_ratings.rating', 'park_ratings.comment')
         .where({ park_id: parkId })
+        // .where('park_ratings.park_id', parkId)
 }
 
-function addRating(rating) {
+function addRating(rating, id) {
     return db('park_ratings') 
-        .insert(rating, 'id')
+        .insert(rating, id)
 }

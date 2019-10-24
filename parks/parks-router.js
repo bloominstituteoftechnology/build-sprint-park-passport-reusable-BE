@@ -59,8 +59,9 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 });
 
-router.get('/:id/ratings', (req, res) => {
-    Parks.getRatings(req.params.id)
+router.get('/:id/ratings', authenticate, (req, res) => { // Front-end needs to use React Router to log this info, movie router
+    const parkId = req.params.id;
+    Parks.getRatings(parkId)
         .then(ratings => {
             if (ratings) res.status(200).json(ratings)
             else res.status(404).json({ message: 'Could not find ratings for that park' })
@@ -68,14 +69,18 @@ router.get('/:id/ratings', (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 });
 
-router.post('/:id/ratings', authenticate, (req, res) => {
-    // const id = req.body.id;
-    // const userId = req.user.id;
+router.post('/ratings/test', authenticate, (req, res) => {
+    const id = req.body.park_id;
+    const userId = req.user.id;
+    const parkRating = req.body;
+    parkRating.user_id = req.user.id;
+
+    console.log(userId);
     
-    Parks.findById(req.params.id) // Change this and below back to ID if we figure out how/why that works
+    Parks.findById(id) // Change this and below back to ID if we figure out how/why that works
         .then(park => {
             if (park) {
-                Parks.addRating(req.body, req.params.id)
+                Parks.addRating(parkRating, userId)
                 .then(rating => {
                     res.status(201).json(rating)
                 })
