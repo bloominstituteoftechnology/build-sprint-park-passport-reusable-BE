@@ -92,4 +92,18 @@ router.delete('/ratings/:id', (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 });
 
+router.put('/ratings/:id', (req, res) => {
+    Parks.findRatingById(req.params.id)
+        .then(rating => {
+            if (rating) {
+                Parks.updateRating(req.body, req.params.id)
+                .then(updatedPark => res.json(updatedPark))
+            } else {
+                res.status(404).json({ message: 'No such park' })
+            }
+        })
+        .catch(err => res.status(500).json({ message: err }))
+});
+
+
 module.exports = router;

@@ -9,7 +9,8 @@ module.exports = {
     getRatings,
     addRating,
     findRatingById,
-    removeRating
+    removeRating,
+    updateRating
 }
 
 function find() {
@@ -66,3 +67,9 @@ function removeRating(id) {
         .where('id', Number(id))
         .delete();
 }
+
+function updateRating(changes, id) {
+    return db('park_ratings')
+        .where('id', Number(id)) 
+        .update(changes);
+};
