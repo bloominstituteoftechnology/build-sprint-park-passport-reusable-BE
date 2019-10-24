@@ -8,6 +8,7 @@ module.exports = {
     remove,
     getRatings,
     addRating,
+    findAllRatings,
     findRatingById,
     removeRating
 }
@@ -48,6 +49,10 @@ function getRatings(parkId) {
         .join('users', 'users.id', 'park_ratings.user_id')
         .select('parks.name', 'park_ratings.id', 'users.username', 'park_ratings.rating', 'park_ratings.comment')
         .where({ park_id: parkId })
+}
+
+function findAllRatings() {
+    return db('park_ratings')
 }
 
 function addRating(rating) {

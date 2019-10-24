@@ -57,6 +57,12 @@ router.get('/:id/ratings', authenticate, (req, res) => { // Front-end needs to u
         .catch(err => res.status(500).json({ message: err }))
 });
 
+router.get('/ratings', (req, res) => {
+    Parks.findAllRatings()
+        .then(ratings => res.status(200).json(ratings))
+        .catch(err => res.status(500).json({ message: err }))
+});
+
 router.post('/ratings/test', authenticate, (req, res) => {
     const id = req.body.park_id;
     const userId = req.user.id;
