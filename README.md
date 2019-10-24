@@ -222,12 +222,11 @@ Returns: an object with park name, rating id, username, rating, and comment.
 
 ### [POST] Park Rating and Comment
 
-#### URL: https://park-passport.herokuapp.com/api/parks/:id/ratings
+#### URL: https://park-passport.herokuapp.com/api/parks/ratings/test
 
-Payload: an object with the following (note: user_id and park_id reference the same ID reflected on the users/parks databases).
+Payload: an object with the following (note: park_id references same ID reflected on the users/parks databases).
 ```
   {
-	"user_id": 2,
 	"park_id": 2,
 	"rating": 1,
         "comment": "Why did I come here? I hate the cold. Oh, yeah. Because my wife made me. Some anniversary..."
