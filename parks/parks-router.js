@@ -79,4 +79,10 @@ router.post('/ratings/test', authenticate, (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 })
 
+router.delete('/ratings/:id', (req, res) => {
+    Parks.remove(req.params.id) 
+        .then(deleted => res.json({ removed: deleted }))
+        .catch(err => res.status(500).json({ message: err }))
+});
+
 module.exports = router;
