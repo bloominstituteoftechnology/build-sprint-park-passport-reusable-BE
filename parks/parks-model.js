@@ -8,6 +8,7 @@ module.exports = {
     remove,
     getRatings,
     addRating,
+    findRatingById,
     removeRating
 }
 
@@ -53,6 +54,12 @@ function addRating(rating) {
     return db('park_ratings') 
         .insert(rating, 'id')
 }
+
+function findRatingById(id) {
+    return db('park_ratings')
+        .where({ id })
+        .first();
+};
 
 function removeRating(id) {
     return db('park_ratings')
