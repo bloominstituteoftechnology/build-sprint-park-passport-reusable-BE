@@ -7,6 +7,7 @@ const authenticate = require('../auth/authenticate-middleware');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    console.log(process.env.DB_ENV)
     Parks.find()
         .then(parks => res.status(200).json(parks))
         .catch(err => res.status(500).json({ message: err }))
