@@ -10,7 +10,6 @@ module.exports = (req, res, next) => {
         res.status(401).json({ message: 'Wrong credentials' });
       } else { 
         req.user = { 
-          // username: decodedToken.username,
           id: decodedToken.id
         };
         console.log('authenticate middleware ', req.user);

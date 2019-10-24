@@ -4,7 +4,6 @@ module.exports = {
     find,
     findById,
     addPark,
-    addAmenity,
     update,
     remove,
     getRatings,
@@ -29,11 +28,6 @@ function addPark(park) {
         })
 };
 
-function addAmenity(amenity, park_id) {
-    return db('parks')
-        .insert(amenity, park_id);
-};
-
 function update(changes, id) {
     return db('parks')
         .where('id', Number(id)) 
@@ -52,7 +46,6 @@ function getRatings(parkId) {
         .join('users', 'users.id', 'park_ratings.user_id')
         .select('parks.name', 'park_ratings.id', 'users.username', 'park_ratings.rating', 'park_ratings.comment')
         .where({ park_id: parkId })
-        // .where('park_ratings.park_id', parkId)
 }
 
 function addRating(rating) {

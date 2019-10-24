@@ -27,19 +27,6 @@ router.post('/', (req, res) => {
         .catch(err => res.status(500).json({ message: err }))
 });
 
-router.post('/:id/amenities', (req, res) => {
-    Parks.findById(req.params.id) 
-        .then(park => {
-            if (park) {
-                Parks.addAmenity(req.body, req.params.id)
-                .then(amenity => res.status(201).json(amenity))
-            } else {
-                res.status(404).json({ message: 'No such park' })
-            }
-        })
-        .catch(err => res.status(500).json({ message: err }))
-});
-
 router.put('/:id', (req, res) => {
     Parks.findById(req.params.id)
         .then(park => {
