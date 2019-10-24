@@ -80,8 +80,15 @@ router.post('/ratings/test', authenticate, (req, res) => {
 })
 
 router.delete('/ratings/:id', (req, res) => {
-    Parks.findRatingById(req.params.id).removeRating()
-        .then(deleted => res.json({ removed: deleted }))
+    Parks.findRatingById(req.params.id)
+        .then(rating => {
+            if (rating) {
+                Parks.removeRating(req.params.id)
+                    .then(rating => res.json({ removed: rating }))
+            } else {
+                res.status(404).json({ message: 'No rating with that ID' })
+            }
+        })
         .catch(err => res.status(500).json({ message: err }))
 });
 
