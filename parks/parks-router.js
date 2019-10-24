@@ -80,7 +80,7 @@ router.post('/ratings/test', authenticate, (req, res) => {
 })
 
 router.delete('/ratings/:id', (req, res) => {
-    Parks.remove(req.params.id) 
+    Parks.findRatingById(req.params.id).removeRating()
         .then(deleted => res.json({ removed: deleted }))
         .catch(err => res.status(500).json({ message: err }))
 });
